@@ -3,63 +3,37 @@ package main
 import "fmt"
 
 func main() {
-	var opcao int
-	fmt.Println("1-casquinha (R$1,00)\n2-cascão (R$2,50)\n3-cestinha (R$4,00)")
-	fmt.Scanf("%d", &opcao)
-	var opcaocopo float32
+	var tiposorvete, saborsorvete, corbetura string
+	fmt.Println("casquinha (R$1,00)\ncascão (R$2,50)\ncestinha (R$4,00)")
+	fmt.Scanf("%s", &tiposorvete)
 
-	switch opcaocopo {
-	case 1:
-		fmt.Scanf("%f", &opcaocopo)
-		opcaocopo = 1.0
-	case 2:
-		fmt.Scanf("%f", &opcaocopo)
-		opcaocopo = 2.5
-	case 3:
-		fmt.Scanf("%f", &opcaocopo)
-		opcaocopo = 4.0
+	fmt.Println("caramelo (R$1,50)\nMorango (R$1,50)\nChocolate (R$1,50)\n4-Sem cobertura (R$0,00)")
+	fmt.Scanf("%s", &saborsorvete)
+
+	fmt.Println("Qual cobertura? [caramelo/morango/chocolate/sem cobertura]")
+	fmt.Scanf("%s", &corbetura)
+
+	var valortipo, valorsabor float64
+
+	switch tiposorvete {
+	case "casquinha":
+		valortipo = 1.0
+	case "cascao":
+		valortipo = 2.5
+	case "cestinha":
+		valortipo = 4.0
+	default:
+		fmt.Println("coloque um valro valido")
 	}
 
-	var opcaosabor int
-	fmt.Println(" 1-morango\n2-creme\n3-chocolate")
-	fmt.Scanf("%d", &opcaosabor)
-	switch opcaosabor {
-	case 1:
-		var sabor string
-		fmt.Scanf("%s", &sabor)
-		sabor = "morango"
-	case 2:
-		var sabor string
-		fmt.Scanf("%s", &sabor)
-		sabor = "morango"
-	case 3:
-		var sabor string
-		fmt.Scanf("%s", &sabor)
-		sabor = "chocolate"
+	if corbetura == "caramelo" || corbetura == "morango" || corbetura == "chocolate" {
+		valorsabor = 1.5
+	} else if corbetura == "sem corbetura" {
+		valorsabor = 0
+	} else {
+		fmt.Println("coloque um valor valido")
 	}
 
-	var opcaocorbetura int
-	fmt.Println("1-Caramelo (R$1,50)\n2-morango (R$1,50)\n3-chocolate (R$1,50)\n4-sem cobertura (R$0,00)")
-	fmt.Scanf("%d", &opcaocorbetura)
-	var corbetura float32
-
-	switch opcaocorbetura {
-	case 1:
-		fmt.Scanf("%s", &corbetura)
-		corbetura = 1.5
-	case 2:
-		fmt.Scanf("%s", &corbetura)
-		corbetura = 1.5
-	case 3:
-		fmt.Scanf("%s", &corbetura)
-		corbetura = 1.5
-	case 4:
-		fmt.Scanf("%f", &corbetura)
-		corbetura = 0.0
-	}
-	var valor float32
-	fmt.Scanf("%f", &valor)
-	valor = opcaocopo + corbetura
-	fmt.Printf("o valor a ser pago é %f", valor)
-
+	total := valorsabor + valortipo
+	fmt.Printf("total %2.f", total)
 }
