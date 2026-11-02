@@ -1,18 +1,27 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"strconv"
+)
 
 func main() {
-	total := 0.0
+	var soma float64
 	for {
-		var saldo float64
+		var entrada string
 		fmt.Println("informe o valor que gsotaria de adicionar")
-		fmt.Scanf("%f", &saldo)
+		fmt.Scanf("%s", &entrada)
 
-		total = total + saldo
-		if saldo == 0 {
-			fmt.Printf("total adicioando a conta: %f", total)
+		if entrada == "" {
 			break
 		}
+
+		valor, erro := strconv.ParseFloat(entrada, 64)
+		if erro != nil {
+			fmt.Println("ente com um valor avalido")
+			continue
+		}
+		soma += valor
 	}
+	fmt.Printf("saldo %f", soma)
 }
