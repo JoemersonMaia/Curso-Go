@@ -2,42 +2,26 @@ package main
 
 import (
 	"fmt"
-	"slices"
-	"strconv"
 )
 
 func main() {
-	temps := []float64{}
+	temps := [6]float64{}
 	total := float64(0)
 
-	for range 6 {
-		var inputTxt string
-		fmt.Println("escreva uma temp")
-		fmt.Scanf("%s", &inputTxt)
-
-		if inputTxt == "" {
-			break
-		}
-
-		temp, err := strconv.ParseFloat(inputTxt, 64)
-
-		if err != nil {
-			fmt.Println("entre com uma nota correta pfvr")
-			continue
-		}
-
-		temps = append(temps, temp)
-
+	for i := 1; i <= 6; i++ {
+		var temp float64
+		fmt.Println("entre com a temp")
+		fmt.Scanf("%f", &temp)
+		temps[i-1] = temp
 	}
 
-	temps = slices.Delete(temps, 0, 1)
-	temps = slices.Delete(temps, len(temps)-1, len(temps))
+	newtemps := temps[1 : len(temps)-1]
 
-	for _, i := range temps {
+	for _, i := range newtemps {
 		total += float64(i)
 	}
 
-	media := total / float64(len(temps))
+	media := total / float64(len(newtemps))
 
 	if media > 30 {
 		fmt.Printf("esta calor\n")
