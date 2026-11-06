@@ -2,58 +2,30 @@ package main
 
 import (
 	"fmt"
-	"strconv"
+	"slices"
 )
 
 func main() {
 	notas := []float64{}
-	total := float64(0)
 
-	for range 4 {
-		var inputTxt string
-
-		fmt.Println("entro com a nota")
-		fmt.Scanf("%s", &inputTxt)
-
-		if inputTxt == "" {
-			break
-		}
-
-		nota, err := strconv.ParseFloat(inputTxt, 64)
-
-		if err != nil {
-			fmt.Println("entre com uma nota")
-			continue
-		}
-
-		notas = append(notas, nota)
-		total += nota
-
+	for i := 1; i <= 4; i++ {
+		var nota float64
+		fmt.Println("entre com a nota")
+		fmt.Scanf("%f", &nota)
+		notas[i-1] = nota
 	}
 
-	if len(notas) == 0 {
-		fmt.Println("nenhuma nota informada")
-		return
+	min := slices.Min(notas[:])
+	max := slices.Max(notas[:])
+
+	var total float64
+	for _, v := range notas {
+		total += v
 	}
 
-	media := total / float64(len(notas))
-
-	minimo := notas[0]
-	maximo := notas[0]
-
-	for i := range notas {
-		if notas[i] < minimo {
-			minimo = notas[i]
-		}
-	}
-
-	for i := range notas {
-		if notas[i] > maximo {
-			maximo = notas[i]
-		}
-	}
-
-	fmt.Printf("media: %f, minimo: %f, maximo:%f", media, minimo, maximo)
+	fmt.Println("mdia:", total/float64(len(notas)))
+	fmt.Println("minimo:", min)
+	fmt.Println("minimo:", max)
 }
 
 //Faça um programa que receba 4 notas,
