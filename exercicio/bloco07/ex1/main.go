@@ -2,9 +2,8 @@ package main
 
 import "fmt"
 
-func recpecao(input string) string {
-	fmt.Printf("ola %s, seja bem vindo\n", input)
-	return input
+func recpecao(nome string) {
+	fmt.Printf("ola %s, seja bem vindo\n", nome)
 }
 
 func main() {

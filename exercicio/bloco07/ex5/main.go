@@ -2,21 +2,26 @@ package main
 
 import "fmt"
 
-func troca(na float64, nb float64) (float64, float64) {
-	na2 := nb
-	nb2 := na
-	return na2, nb2
+func swap(a, b int) (int, int) {
+	a, b = b, a
+	return a, b
+}
+
+func swapPtrs(a, b *int) {
+	*a, *b = *b, *a
 }
 func main() {
-	var na float64
-	var nb float64
+	var a, b int
 
-	fmt.Println("informe o numero a")
-	fmt.Scanf("%f", &na)
+	fmt.Println("entre com a")
+	fmt.Scanf("%d", &a)
 
-	fmt.Println("informe numero b")
-	fmt.Scanf("%f", &nb)
+	fmt.Println("entre com b")
+	fmt.Scanf("%d", &b)
 
-	fmt.Println(troca(na, nb))
+	a, b = swap(a, b)
+	fmt.Printf("a= %d, b= %d", a, b)
 
+	swapPtrs(&a, &b)
+	fmt.Printf("\na= %d, b= %d", a, b)
 }
