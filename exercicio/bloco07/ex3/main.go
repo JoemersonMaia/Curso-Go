@@ -5,33 +5,42 @@ import (
 	"strconv"
 )
 
-func media(total float64, numeros []float64) float64 {
-	media := float64(0)
-	media = total / float64(len(numeros))
-	return media
+func soma(values ...float64) float64 {
+	res := 0.0
+	for _, v := range values {
+		res += v
+	}
+	return res
+}
+
+func media(values ...float64) float64 {
+	return soma(values...) / float64(len(values))
+}
+
+func getValues() []float64 {
+	values := []float64{}
+	for {
+		var valorstr string
+		fmt.Println("entre com um valorstr")
+		fmt.Scanf("%s", &valorstr)
+
+		if valorstr == "" {
+			return values
+		}
+
+		valor, err := strconv.ParseFloat(valorstr, 64)
+		if err != nil {
+			fmt.Println("entre com um valorstr bom")
+			continue
+		}
+
+		values = append(values, valor)
+	}
 }
 
 func main() {
-	numeros := []float64{}
-	total := float64(0)
+	valores := getValues()
+	medivalor := media(valores...)
 
-	for {
-		var input string
-		fmt.Println("informe um numero")
-		fmt.Scanf("%s", &input)
-
-		if input == "" {
-			break
-		}
-
-		numero, err := strconv.ParseFloat(input, 64)
-		if err != nil {
-			fmt.Println("entre com um valor valido")
-		}
-		numeros = append(numeros, numero)
-	}
-	for _, i := range numeros {
-		total += float64(i)
-	}
-	fmt.Println(media(total, numeros))
+	fmt.Println("media", medivalor)
 }
