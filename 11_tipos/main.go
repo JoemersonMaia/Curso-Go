@@ -13,7 +13,7 @@ func IMC(altura Altura, peso Peso) float64 {
 	return float64(peso) / float64(altura*altura)
 }
 
-func CtoF(Celsius) Fahrenheit {
+func CtoF(c Celsius) Fahrenheit {
 	return Fahrenheit(float64(c)*9.0/5.0 + 32.0)
 }
 
